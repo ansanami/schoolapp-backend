@@ -18,6 +18,8 @@ import tr.ogu.edu.school.schoolapp.model.User;
 import tr.ogu.edu.school.schoolapp.service.AuthenticationService;
 import tr.ogu.edu.school.schoolapp.service.UserService;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/users")
@@ -36,6 +38,13 @@ public class UserController {
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
 		}
+	}
+
+	@GetMapping
+	public ResponseEntity<List<UserDto>> getUsers() {
+		List<User> users = userService.getAllUsers();
+		List<UserDto> userDtos = users.stream().map(UserMapper::toUserDto).toList();
+		return ResponseEntity.ok(userDtos);
 	}
 
 	@PostMapping
@@ -60,14 +69,15 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<String> login(@RequestBody UserLoginDto userLoginDto) {
+	public ResponseEntity<UserDto> login(@RequestBody UserLoginDto userLoginDto) {
 		User authenticatedUser = authenticationService.authenticateUser(userLoginDto.getTckn(),
 				userLoginDto.getPassword());
 		if (authenticatedUser != null) {
-//			String token = jwtUtil.generateToken(authenticatedUser);
-//			return ResponseEntity.ok(token);
-			return ResponseEntity.ok("User successfully authenticated");
+			UserDto userDto = UserMapper.toUserDto(authenticatedUser);
+			return ResponseEntity.ok(userDto);
 		}
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	}
+
+
 }

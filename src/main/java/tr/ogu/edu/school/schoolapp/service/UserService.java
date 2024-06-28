@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import tr.ogu.edu.school.schoolapp.model.User;
 import tr.ogu.edu.school.schoolapp.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -52,5 +54,8 @@ public class UserService {
 		}
 		userRepository.deleteById(id);
 		return true;
+	}
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
 	}
 }

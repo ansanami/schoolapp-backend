@@ -50,15 +50,20 @@ public class SecurityConfig {
 	@Bean
 	@Profile("!dev")
 	public SecurityFilterChain securityFilterChainProduction(HttpSecurity http) throws Exception {
-		http.csrf().disable().cors().configurationSource(corsConfigurationSource()).and()
-				.authorizeHttpRequests((authz) -> authz.requestMatchers("/users/login", "/users", "/tickets/public/**")
-						.permitAll().anyRequest().authenticated())
-				.formLogin(formLogin -> formLogin.loginProcessingUrl("/login").defaultSuccessUrl("/index.html"));
-//				.and()
-//				.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+		http.csrf().disable()
+				.cors().configurationSource(corsConfigurationSource()).and()
+				.authorizeHttpRequests((authz) -> authz
+						.requestMatchers("/users/login", "/users", "/tickets/public/**", "/users/all").permitAll()
+						.anyRequest().authenticated())
+				.formLogin(formLogin -> formLogin
+						.loginProcessingUrl("/login")
+						.defaultSuccessUrl("/index.html"));
+		// .and()
+		// .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
 	}
+
 
 //	@Bean
 //	public JwtAuthenticationFilter jwtAuthenticationFilter() {
