@@ -63,8 +63,8 @@ public class UserController {
 	}
 
 	@DeleteMapping
-	public ResponseEntity<Boolean> deleteUser(@RequestBody UserDto userDto) {
-		boolean result = userService.deleteUser(userDto.getId());
+	public ResponseEntity<Boolean> deleteUser(@RequestBody Long ıd) {
+		boolean result = userService.deleteUser(ıd);
 		return result ? ResponseEntity.ok(true) : ResponseEntity.notFound().build();
 	}
 

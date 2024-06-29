@@ -33,9 +33,8 @@ public class UserService {
 
 	@Transactional
 	public User updateUser(User user) {
-		Long id = user.getId();
-		User existingUser = userRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
+		String id = user.getTckn();
+		User existingUser = userRepository.findByTckn(id);
 		existingUser.setName(user.getName());
 		existingUser.setSurname(user.getSurname());
 		existingUser.setMail(user.getMail());
