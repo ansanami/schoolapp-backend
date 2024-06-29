@@ -46,6 +46,12 @@ public class UserController {
 		List<UserDto> userDtos = users.stream().map(UserMapper::toUserDto).toList();
 		return ResponseEntity.ok(userDtos);
 	}
+	@GetMapping(value = "/{tckn}")
+	public ResponseEntity<UserDto> getUser(String tckn) {
+		User user = userService.getUser(tckn);
+		UserDto userDto = UserMapper.toUserDto(user);
+		return ResponseEntity.ok(userDto);
+	}
 
 	@PostMapping
 	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
