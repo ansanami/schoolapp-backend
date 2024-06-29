@@ -2,13 +2,7 @@ package tr.ogu.edu.school.schoolapp.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.AllArgsConstructor;
 import tr.ogu.edu.school.schoolapp.dto.UserDto;
@@ -47,7 +41,7 @@ public class UserController {
 		return ResponseEntity.ok(userDtos);
 	}
 	@GetMapping(value = "/{tckn}")
-	public ResponseEntity<UserDto> getUser(String tckn) {
+	public ResponseEntity<UserDto> getUser(@PathVariable String tckn) {
 		User user = userService.getUser(tckn);
 		UserDto userDto = UserMapper.toUserDto(user);
 		return ResponseEntity.ok(userDto);
