@@ -17,6 +17,8 @@ public class ActSessionHallMapper extends DtoEntityMapper<ActSessionHallSeat, Ac
 		dto.setActSeat(ActSeatMapper.INSTANCE.toDto(entity.getActSeat()));
 		UserDto userDto = UserMapper.toUserDto(entity.getUser());
 		dto.setUser(userDto);
+		dto.setBlockedTime(entity.getBlockedTime());
+		dto.setActSessionInfo(ActSessionInfoMapper.INSTANCE.toDto(entity.getActSessionInfo()));
 		return dto;
 	}
 

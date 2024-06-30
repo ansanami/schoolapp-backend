@@ -77,4 +77,59 @@ public class ActSessionHallSeat implements Serializable {
 		return actTicket;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getBlockedTime() {
+		return blockedTime;
+	}
+
+	public void setBlockedTime(Date blockedTime) {
+		this.blockedTime = blockedTime;
+	}
+
+	public SeatStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(SeatStatus status) {
+		this.status = status;
+	}
+
+	public ActSeat getActSeat() {
+		return actSeat;
+	}
+
+	public void setActSeat(ActSeat actSeat) {
+		this.actSeat = actSeat;
+	}
+
+	public ActSessionInfo getActSessionInfo() {
+		return actSessionInfo;
+	}
+
+	public void setActSessionInfo(ActSessionInfo actSessionInfo) {
+		this.actSessionInfo = actSessionInfo;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<ActTicket> getActTickets() {
+		return actTickets;
+	}
+
+	public void setActTickets(List<ActTicket> actTickets) {
+		this.actTickets = actTickets;
+	}
 }
