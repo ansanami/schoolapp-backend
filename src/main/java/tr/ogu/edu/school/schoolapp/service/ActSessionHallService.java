@@ -18,4 +18,8 @@ public class ActSessionHallService {
 		return actSessionHallRepository.findAllByActSessionInfoId(sessionId);
 	}
 
+	public List<ActSessionHallSeat> getSeats() {
+		return actSessionHallRepository.findAll();
+	}
+
 }

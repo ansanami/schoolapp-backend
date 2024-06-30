@@ -44,4 +44,27 @@ public class ActCategory implements Serializable {
 		return actSeat;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<ActSeat> getActSeats() {
+		return actSeats;
+	}
+
+	public void setActSeats(List<ActSeat> actSeats) {
+		this.actSeats = actSeats;
+	}
 }

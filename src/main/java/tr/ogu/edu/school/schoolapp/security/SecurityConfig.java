@@ -53,7 +53,7 @@ public class SecurityConfig {
 		http.csrf().disable()
 				.cors().configurationSource(corsConfigurationSource()).and()
 				.authorizeHttpRequests((authz) -> authz
-						.requestMatchers("/users/login", "/users/**", "/tickets/public/**", "/users/all").permitAll()
+						.requestMatchers("/**").permitAll()
 						.anyRequest().authenticated())
 				.formLogin(formLogin -> formLogin
 						.loginProcessingUrl("/login")

@@ -1,6 +1,7 @@
 package tr.ogu.edu.school.schoolapp.mapper;
 
 import tr.ogu.edu.school.schoolapp.dto.ActSessionHallSeatDto;
+import tr.ogu.edu.school.schoolapp.dto.UserDto;
 import tr.ogu.edu.school.schoolapp.model.ActSessionHallSeat;
 
 public class ActSessionHallMapper extends DtoEntityMapper<ActSessionHallSeat, ActSessionHallSeatDto> {
@@ -14,6 +15,8 @@ public class ActSessionHallMapper extends DtoEntityMapper<ActSessionHallSeat, Ac
 		dto.setBlockedTime(entity.getBlockedTime());
 		dto.setStatus(entity.getStatus());
 		dto.setActSeat(ActSeatMapper.INSTANCE.toDto(entity.getActSeat()));
+		UserDto userDto = UserMapper.toUserDto(entity.getUser());
+		dto.setUser(userDto);
 		return dto;
 	}
 

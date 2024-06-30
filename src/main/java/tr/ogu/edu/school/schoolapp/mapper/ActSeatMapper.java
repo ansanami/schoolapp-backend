@@ -11,9 +11,10 @@ public class ActSeatMapper extends DtoEntityMapper<ActSeat, ActSeatDto> {
 	public ActSeatDto toDto(ActSeat entity) {
 		ActSeatDto dto = new ActSeatDto();
 		dto.setId(entity.getId());
-		dto.setActCategory(ActCategoryMapper.INSTANCE.toDto(entity.getActCategory()));
 		dto.setLine(entity.getLine());
 		dto.setNo(entity.getNo());
+		dto.setCategoryId(entity.getActCategory().getId());
+		dto.setHallId(entity.getActHall().getId());
 		return dto;
 	}
 
@@ -23,7 +24,8 @@ public class ActSeatMapper extends DtoEntityMapper<ActSeat, ActSeatDto> {
 		entity.setId(dto.getId());
 		entity.setLine(dto.getLine());
 		entity.setNo(dto.getNo());
-		entity.setActCategory(ActCategoryMapper.INSTANCE.toEntity(dto.getActCategory()));
+		// Optionally, you can set ActCategory if needed
+		// entity.setActCategory(ActCategoryMapper.INSTANCE.toEntity(dto.getActCategory()));
 		return entity;
 	}
 }

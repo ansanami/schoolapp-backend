@@ -1,24 +1,12 @@
 package tr.ogu.edu.school.schoolapp.dto;
 
-import java.io.Serializable;
-import java.util.List;
-
 import lombok.Data;
 
 @Data
-public class ActSeatDto implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class ActSeatDto {
 	private Long id;
-
 	private String line;
-
 	private Integer no;
-
-	private ActCategoryDto actCategory;
-
-	private ActHallDto actHall;
-
-	private List<ActSessionHallSeatDto> actSessionHalls;
-
+	private Long hallId; // New field for hallId
+	private Long categoryId; // New field for categoryId
 }
