@@ -1,6 +1,10 @@
 package tr.ogu.edu.school.schoolapp.mapper;
 
+import tr.ogu.edu.school.schoolapp.dto.ActHallDto;
+import tr.ogu.edu.school.schoolapp.dto.ActSessionHallSeatDto;
 import tr.ogu.edu.school.schoolapp.dto.ActSessionInfoDto;
+import tr.ogu.edu.school.schoolapp.model.ActHall;
+import tr.ogu.edu.school.schoolapp.model.ActSeat;
 import tr.ogu.edu.school.schoolapp.model.ActSessionInfo;
 
 public final class ActSessionInfoMapper extends DtoEntityMapper<ActSessionInfo, ActSessionInfoDto> {
@@ -14,6 +18,8 @@ public final class ActSessionInfoMapper extends DtoEntityMapper<ActSessionInfo, 
 		dto.setActivityDate(actSessionInfo.getActivityDate());
 		dto.setActivityName(actSessionInfo.getActivityName());
 		dto.setFee(actSessionInfo.getFee());
+		ActHallDto actHallDto= ActHallMapper.INSTANCE.toDto(actSessionInfo.getActHall());
+		dto.setActHall(actHallDto);
 		return dto;
 	}
 
