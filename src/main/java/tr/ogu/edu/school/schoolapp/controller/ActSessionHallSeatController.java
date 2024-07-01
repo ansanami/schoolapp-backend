@@ -25,9 +25,9 @@ public class ActSessionHallSeatController {
 		return ResponseEntity.ok(seatDtos);
 	}
 
-	@PutMapping("/{seatId}")
-	public ResponseEntity<ActSessionHallSeatDto> updateSeatStatus(@PathVariable Long seatId, @RequestBody String UserId) {
-		ActSessionHallSeat actSessionHallSeat = actSessionHallService.updateSeatStatus(seatId,UserId);
+	@PutMapping("/{seatId}/{Id}")
+	public ResponseEntity<ActSessionHallSeatDto> updateSeatStatus(@PathVariable Long seatId,@PathVariable Long Id) {
+		ActSessionHallSeat actSessionHallSeat = actSessionHallService.updateSeatStatus(seatId,Id);
 		if (actSessionHallSeat != null) {
 			ActSessionHallSeatDto updatedSeatDto = ActSessionHallMapper.INSTANCE.toDto(actSessionHallSeat);
 			return ResponseEntity.ok(updatedSeatDto);

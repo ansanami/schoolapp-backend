@@ -28,12 +28,12 @@ public class ActSessionHallService {
 		return actSessionHallRepository.findAllByActSeatId(seatId);
 	}
 
-	public ActSessionHallSeat updateSeatStatus(Long seatId,String UserId) {
+	public ActSessionHallSeat updateSeatStatus(Long seatId,Long UserId) {
 		ActSessionHallSeat seatToUpdate = actSessionHallRepository.findAllByActSeatId(seatId);
 
 		if (seatToUpdate != null) {
 			seatToUpdate.setStatus(SeatStatus.BLOCKED);
-			seatToUpdate.setUser(userService.getUser(UserId));
+			seatToUpdate.setUser(userService.getUser(UserId.toString()));
 			return actSessionHallRepository.save(seatToUpdate);
 		} else {
 			return null; // Or throw an exception or handle as per your application's logic
