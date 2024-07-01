@@ -3,10 +3,7 @@ package tr.ogu.edu.school.schoolapp.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
 import tr.ogu.edu.school.schoolapp.dto.ActSessionHallSeatDto;
@@ -26,6 +23,18 @@ public class ActSessionHallSeatController {
 		List<ActSessionHallSeat> seats = actSessionHallService.getSeatsByHallId(sessionId);
 		List<ActSessionHallSeatDto> seatDtos = ActSessionHallMapper.INSTANCE.toDtoList(seats);
 		return ResponseEntity.ok(seatDtos);
+	}
+
+	@PutMapping("/{seatId}")
+	public ResponseEntity<ActSessionHallSeatDto> updateSeatStatus(@PathVariable Long seatId) {
+		ActSessionHallSeat actSessionHallSeat = actSessionHallService.updateSeatStatus(seatId);
+		if (actSessionHallSeat != null) {
+			ActSessionHallSeatDto updatedSeatDto = ActSessionHallMapper.INSTANCE.toDto(actSessionHallSeat);
+			return ResponseEntity.ok(updatedSeatDto);
+		} else {
+			// Handle case where seat was not found
+			return ResponseEntity.notFound().build();
+		}
 	}
 
 }

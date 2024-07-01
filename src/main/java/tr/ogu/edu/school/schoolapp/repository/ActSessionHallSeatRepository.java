@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.LockModeType;
@@ -18,5 +19,8 @@ public interface ActSessionHallSeatRepository extends JpaRepository<ActSessionHa
 
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	List<ActSessionHallSeat> findAllByStatusAndIdGreaterThanOrderByIdAsc(SeatStatus status, Long id, Pageable pageable);
+
+	@Query("SELECT s FROM ActSessionHallSeat s WHERE s.actSeat.id = :actSeatId")
+	ActSessionHallSeat findAllByActSeatId(Long actSeatId);
 
 }
