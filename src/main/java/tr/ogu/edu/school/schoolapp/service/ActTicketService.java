@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import tr.ogu.edu.school.schoolapp.dto.ActTicketDto;
 import tr.ogu.edu.school.schoolapp.enums.SeatStatus;
 import tr.ogu.edu.school.schoolapp.enums.TicketStatus;
 import tr.ogu.edu.school.schoolapp.exception.InvalidTicketException;
@@ -186,5 +187,11 @@ public class ActTicketService {
 		response.put("currentStatus", currentStatus);
 
 		return response;
+	}
+
+
+	public List<ActTicket> getTicketsByUserId(Long userId) {
+		List<ActTicket> tickets = actTicketRepository.findAllByUserId(userId);
+		return tickets;
 	}
 }

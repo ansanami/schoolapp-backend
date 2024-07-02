@@ -3,6 +3,7 @@ package tr.ogu.edu.school.schoolapp.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,6 +18,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import tr.ogu.edu.school.schoolapp.enums.TicketStatus;
 
 /**
@@ -25,6 +28,8 @@ import tr.ogu.edu.school.schoolapp.enums.TicketStatus;
  */
 @Entity
 @Data
+@Getter
+@Setter
 @Table(name = "act_ticket")
 public class ActTicket implements Serializable {
 	private static final long serialVersionUID = 1L;
