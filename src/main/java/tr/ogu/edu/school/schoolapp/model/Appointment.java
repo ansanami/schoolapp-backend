@@ -11,6 +11,7 @@ import tr.ogu.edu.school.schoolapp.enums.AppointmentStatus;
 @Entity
 @Data
 @Table(name = "appointments")
+@NoArgsConstructor
 public class Appointment implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -19,13 +20,11 @@ public class Appointment implements Serializable {
     @SequenceGenerator(name = "appointment_id_seq", sequenceName = "appointment_id_seq", allocationSize = 1)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private Teachers teacher;
+    @Column(name = "teacher_id")
+    private Long teacherId;
 
     private Date date;
 
