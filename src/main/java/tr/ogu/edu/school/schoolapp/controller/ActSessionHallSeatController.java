@@ -36,5 +36,11 @@ public class ActSessionHallSeatController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	@GetMapping("/tickets/{userId}")
+	public ResponseEntity<List<ActSessionHallSeatDto>> getSeatsByUserId(@PathVariable Long userId) {
+		List<ActSessionHallSeat> seats = actSessionHallService.getSeatsByUserId(userId);
+		List<ActSessionHallSeatDto> seatDtos = ActSessionHallMapper.INSTANCE.toDtoList(seats);
+		return ResponseEntity.ok(seatDtos);
+	}
 
 }

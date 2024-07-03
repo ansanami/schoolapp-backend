@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import jakarta.persistence.LockModeType;
 import tr.ogu.edu.school.schoolapp.enums.SeatStatus;
 import tr.ogu.edu.school.schoolapp.model.ActSessionHallSeat;
+import tr.ogu.edu.school.schoolapp.model.User;
 
 @Repository
 public interface ActSessionHallSeatRepository extends JpaRepository<ActSessionHallSeat, Long> {
@@ -22,5 +23,9 @@ public interface ActSessionHallSeatRepository extends JpaRepository<ActSessionHa
 
 	@Query("SELECT s FROM ActSessionHallSeat s WHERE s.actSeat.id = :actSeatId")
 	ActSessionHallSeat findAllByActSeatId(Long actSeatId);
+
+	@Query("SELECT s FROM ActSessionHallSeat s WHERE s.user.id = :user AND s.status = 'BLOCKED'")
+	List<ActSessionHallSeat> findAllByUser(Long user);
+
 
 }

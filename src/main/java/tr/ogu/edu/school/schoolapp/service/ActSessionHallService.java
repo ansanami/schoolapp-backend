@@ -40,4 +40,8 @@ public class ActSessionHallService {
 		}
 	}
 
+		public List<ActSessionHallSeat> getSeatsByUserId(Long userId) {
+		return actSessionHallRepository.findAllByUser(userId);
+	}
+
 }
