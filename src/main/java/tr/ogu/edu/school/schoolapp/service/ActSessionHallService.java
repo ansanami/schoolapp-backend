@@ -44,4 +44,17 @@ public class ActSessionHallService {
 		return actSessionHallRepository.findAllByUser(userId);
 	}
 
+
+	public ActSessionHallSeat updateSeatStatusForAvailable(Long seatId) {
+		ActSessionHallSeat seatToUpdate = actSessionHallRepository.findAllByActSeatId(seatId);
+
+		if (seatToUpdate != null) {
+			seatToUpdate.setStatus(SeatStatus.AVAILABLE);
+			seatToUpdate.setUser(null);
+			return actSessionHallRepository.save(seatToUpdate);
+		} else {
+			return null; // Or throw an exception or handle as per your application's logic
+		}
+	}
+
 }
