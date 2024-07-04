@@ -25,9 +25,9 @@ public class ActSessionHallSeatController {
 		return ResponseEntity.ok(seatDtos);
 	}
 
-	@PutMapping("/{seatId}/{Id}")
-	public ResponseEntity<ActSessionHallSeatDto> updateSeatStatus(@PathVariable Long seatId,@PathVariable Long Id) {
-		ActSessionHallSeat actSessionHallSeat = actSessionHallService.updateSeatStatus(seatId,Id);
+	@PutMapping("/{seatId}/{tckn}")
+	public ResponseEntity<ActSessionHallSeatDto> updateSeatStatus(@PathVariable Long seatId,@PathVariable Long tckn) {
+		ActSessionHallSeat actSessionHallSeat = actSessionHallService.updateSeatStatus(seatId,tckn);
 		if (actSessionHallSeat != null) {
 			ActSessionHallSeatDto updatedSeatDto = ActSessionHallMapper.INSTANCE.toDto(actSessionHallSeat);
 			return ResponseEntity.ok(updatedSeatDto);
@@ -41,6 +41,18 @@ public class ActSessionHallSeatController {
 		List<ActSessionHallSeat> seats = actSessionHallService.getSeatsByUserId(userId);
 		List<ActSessionHallSeatDto> seatDtos = ActSessionHallMapper.INSTANCE.toDtoList(seats);
 		return ResponseEntity.ok(seatDtos);
+	}
+
+	@PutMapping("/{seatId}")
+	public ResponseEntity<ActSessionHallSeatDto> updateSeatStatusForAvailable(@PathVariable Long seatId) {
+		ActSessionHallSeat actSessionHallSeat = actSessionHallService.updateSeatStatusForAvailable(seatId);
+		if (actSessionHallSeat != null) {
+			ActSessionHallSeatDto updatedSeatDto = ActSessionHallMapper.INSTANCE.toDto(actSessionHallSeat);
+			return ResponseEntity.ok(updatedSeatDto);
+		} else {
+			// Handle case where seat was not found
+			return ResponseEntity.notFound().build();
+		}
 	}
 
 }
