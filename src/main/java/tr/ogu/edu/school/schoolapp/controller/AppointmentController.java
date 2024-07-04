@@ -62,4 +62,12 @@ public class AppointmentController {
         AppointmentDto savedAppointmentDto = appointmentMapper.toDto(savedAppointment);
         return ResponseEntity.ok(savedAppointmentDto);
     }
+    @GetMapping("/teacher/{teacherId}")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByTeacherId(@PathVariable Long teacherId) {
+        List<Appointment> appointments = appointmentService.getAppointmentsByTeacherId(teacherId);
+        List<AppointmentDto> appointmentDtos = appointments.stream()
+                .map(appointmentMapper::toDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(appointmentDtos);
+    }
 }
